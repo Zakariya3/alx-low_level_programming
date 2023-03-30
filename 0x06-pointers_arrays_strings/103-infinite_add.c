@@ -1,58 +1,29 @@
-#include "main.h"
-#include <stdio.h>
+include "main.h"
+
 /**
- * infinite_add - add 2 strings.
- * @n1: string1.
- * @n2: string2.
- * @r: buffer
- * @size_r: buffer size
- * Return: String with all letters in ROT13 base.
+ * rot13 - encodes a string in rot13
+ * @s: string to be encoded
+ * Return: the resulting strring
  */
-char *infinite_add(char *n1, char *n2, char *r, int size_r)
+char *rot13(char *s)
 {
-	int a_len = 0, b_len = 0, carry = 0, a, b, sum, biggest;
-	while (n1[a_len] != '\0')
-		a_len++;
-	while (n2[b_len] != '\0')
-		b_len++;
-	if (a_len > b_len)
-		biggest = a_len;
-	else
-		biggest = b_len;
-	if ((biggest + 1) >= size_r)
-		return (0);
-	r[biggest + 1] = '\0';
-	while (biggest >= 0)
+	int i, j;
+
+	char a[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+	char b[] = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
+
+	for (i = 0; s[i] != '\0'; i++)
 	{
-		a = (n1[a_len - 1] - '0');
-		b = (n1[b_len - 1] - '0');
-		if (a_len > 0 && b_len > 0)
-			sum = a + b + carry;
-		else if (a_len < 0 && b_len > 0)
-			sum = b + carry;
-		else if (a_len > 0 && b_len < 0)
-			sum = a + carry;
-		else
-			sum = carry;
-		if (sum > 9)
+		for (j = 0; a[j] != '\0'; j++)
 		{
-			carry = sum / 10;
-			sum = (sum % 10) + '0';
+			if (s[i] == a[j])
+			{
+				s[i] = b[j];
+				break;
+			}
 		}
-		else
-		{
-			carry = 0;
-			sum = sum + '0';
-		}
-		r[biggest] = sum;
-		a_len--;
-		b_len--;
-		biggest--;
+
 	}
-	if (*(r) != 0)
-		return (r);
-	{
-	else
-	}
-		return (r + 1);
-}	
+	return (s);
+}
+
