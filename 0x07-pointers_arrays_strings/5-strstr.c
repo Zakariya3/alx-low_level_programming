@@ -1,4 +1,4 @@
-#include "main.h"
+#include "holberton.h"
 /**
  * _strstr - function that locates a substring.
  *@haystack: first value -char
@@ -40,4 +40,4 @@ char *_strstr(char *haystack, char *needle)
 		j++;
 	}
 	return ('\0');
-}	
+}
